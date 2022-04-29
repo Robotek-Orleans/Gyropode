@@ -6,15 +6,19 @@
 #include <chrono>
 
 
-void Motor1::run(bool &isvalid, unsigned int &delay, int &steps)       //steps is only return variable for the main loop
+void Motor1::run()       //steps is only return variable for the main loop
 {
     bcm2835_gpio_write(ENABLE, LOW);
-    while (isvalid) 
+    valid=true;
+    while (valid) 
     {
-        bcm2835_gpio_write(DIR_M1, steps>0);
-        bcm2835_gpio_write(STEP_M1, HIGH);
+        // set the dir pin to the right value
+        bcm2835_gpio_write(DIR_M1, dir);
+        // set the step pin to high
+        bcm2835_gpio_set_multi(STEP_PIN_M1);
         bcm2835_delayMicroseconds(delay);
-        bcm2835_gpio_write(STEP_M1, LOW);
+        // clear the step pin to LOW
+        bcm2835_gpio_clr_multi(STEP_PIN_M1); 
         bcm2835_delayMicroseconds(delay);
         steps++;
     }
@@ -24,15 +28,19 @@ void Motor1::run(bool &isvalid, unsigned int &delay, int &steps)       //steps i
     #endif
 }
 
-void Motor2::run(bool &isvalid, unsigned int &delay, int &steps)       //steps is only return variable for the main loop
+void Motor2::run()       //steps is only return variable for the main loop
 {
     bcm2835_gpio_write(ENABLE, LOW);
-    while (isvalid) 
-    {
-        bcm2835_gpio_write(DIR_M2, steps>0);
-        bcm2835_gpio_write(STEP_M2, HIGH);
+    valid=true;
+    while (valid) 
+    {   
+        // set the dir pin to the right value
+        bcm2835_gpio_write(DIR_M2, dir);
+        // set the step pin to high
+        bcm2835_gpio_set_multi(STEP_PIN_M2);
         bcm2835_delayMicroseconds(delay);
-        bcm2835_gpio_write(STEP_M2, LOW);
+        // clear the step pin to LOW
+        bcm2835_gpio_clr_multi(STEP_PIN_M2);
         bcm2835_delayMicroseconds(delay);
         steps++;
     }

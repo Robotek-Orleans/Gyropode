@@ -1,11 +1,19 @@
 #include <bcm2835.h>
+#include <limits.h>
+
 
 #define ENABLE 26 // ENABLE HIGH <=> motor disabled 
 #define STEP_M1 6
 #define DIR_M1 5
 #define STEP_M2 19
 #define DIR_M2 13
-#define ENABLE 26
+
+#define STEP_PIN_M1 (1 << STEP_M1)
+#define DIR_PIN_M1 (1 << DIR_M1)
+#define PINS_M1 (1 << STEP_M1) | (1 << DIR_M1)
+#define STEP_PIN_M2 (1 << STEP_M2)
+#define DIR_PIN_M2 (1 << DIR_M2)
+#define PINS_M2 (1 << STEP_M2) | (1 << DIR_M2)
 
 #define DEBUG TRUE
 
@@ -15,8 +23,13 @@ class Motor
     public:
         Motor();
         ~Motor();
-        bool valid = true;
+        bool valid = false;
+        unsigned int delay = 1<<16; // default delay to be near stop
+        int steps = 0;
+        bool dir;
+
         //void run(bool &isvalid, unsigned int &delay, int &steps);
+        virtual void run() = 0;
 
     private:
         // déclaration des méthodes abstraites
@@ -45,7 +58,7 @@ class Motor1 : public Motor
             init();
         }
     
-    void run(bool &isvalid, unsigned int &delay, int &steps);
+    void run();
     
     protected:
         // définition des méthodes abstraites pour appeler StepPin et DirPin
@@ -60,7 +73,7 @@ class Motor2 : public Motor
             init();
         }
 
-        void run(bool &isvalid, unsigned int &delay, int &steps);
+        void run();
 
     protected:
         // définition des méthodes abstraites pour appeler StepPin et DirPin
