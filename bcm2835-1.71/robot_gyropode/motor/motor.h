@@ -23,8 +23,11 @@ class Motor
         protected:
         inline void init(){
             // Set the pin to be an output
-            bcm2835_gpio_fsel(StepPin(), BCM2835_GPIO_FSEL_OUTP);
-            bcm2835_gpio_fsel(DirPin(), BCM2835_GPIO_FSEL_OUTP);
+            //bcm2835_gpio_fsel(StepPin(), BCM2835_GPIO_FSEL_OUTP);
+            //bcm2835_gpio_fsel(DirPin(), BCM2835_GPIO_FSEL_OUTP);
+            bcm2835_gpio_fsel(STEP_M1, BCM2835_GPIO_FSEL_OUTP);
+            bcm2835_gpio_fsel(DIR_M1, BCM2835_GPIO_FSEL_OUTP);
+            
             bcm2835_gpio_fsel(ENABLE, BCM2835_GPIO_FSEL_OUTP);
             //enable motor
             bcm2835_gpio_write(ENABLE, LOW);
