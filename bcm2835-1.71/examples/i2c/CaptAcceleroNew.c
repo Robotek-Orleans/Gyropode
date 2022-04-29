@@ -16,8 +16,7 @@
 #define GYRO_CONFIG 0x1B
 #define PWR_MGMT_1 0x6B
 #define PWR_MGMT_2 0x6C
-
-uint16_t clk_div = BCM2835_I2C_CLOCK_DIVIDER_148;
+#define clk_div BCM2835_I2C_CLOCK_DIVIDER_148
 uint8_t data =0;
 uint32_t len = 16;
 char buf[MAX_LEN];
@@ -36,8 +35,9 @@ int main()
     
     printf("\r");
     bcm2835_init();
-    bcm2835_i2c_setClockDivider(clk_div);
+    bcm2835_i2c_begin();
     bcm2835_i2c_setSlaveAddress(ACCEL_XOUT0);
+    bcm2835_i2c_setClockDivider(BCM2835_I2C_CLOCK_DIVIDER_148);
     bcm2835_i2c_read(buf,len);
     printf("Ax = ");
     printf("%i",Read());
