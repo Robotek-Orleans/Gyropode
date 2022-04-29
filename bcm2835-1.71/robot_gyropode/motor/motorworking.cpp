@@ -67,6 +67,7 @@ void signalHandler( int signum ) {
 
 int main(int argc, char **argv)
 {
+    std::cout << "Started ...\n";
     if (!bcm2835_init())
       return 1;
     

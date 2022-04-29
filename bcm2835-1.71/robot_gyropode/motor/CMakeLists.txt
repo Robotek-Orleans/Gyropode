@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)              # Enable c++14 standard
 # add the source files
 # set(SOURCE_FILES motorworking.cpp motor.cpp)
 #set(SOURCE_FILES motorworking.cpp)
-set(SOURCE_FILES motor.cpp)
+set(SOURCE_FILES main.cpp)
 
 find_library(BCM2835_LIB bcm2835)
 if(NOT BCM2835_LIB)
