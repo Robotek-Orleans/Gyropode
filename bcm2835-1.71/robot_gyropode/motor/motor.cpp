@@ -16,7 +16,12 @@ void Motor1::run(bool &isvalid, unsigned int &delay, int &steps)       //steps i
         bcm2835_delayMicroseconds(delay);
         bcm2835_gpio_write(STEP_M1, LOW);
         bcm2835_delayMicroseconds(delay);
+        steps++;
     }
+    #ifdef DEBUG
+        //print the steps
+        std::cout << "steps: " << steps << std::endl;
+    #endif
 }
 
 void Motor2::run(bool &isvalid, unsigned int &delay, int &steps)       //steps is only return variable for the main loop
@@ -24,12 +29,17 @@ void Motor2::run(bool &isvalid, unsigned int &delay, int &steps)       //steps i
     bcm2835_gpio_write(ENABLE, LOW);
     while (isvalid) 
     {
-        bcm2835_gpio_write(DIR_M1, steps>0);
+        bcm2835_gpio_write(DIR_M2, steps>0);
         bcm2835_gpio_write(STEP_M2, HIGH);
         bcm2835_delayMicroseconds(delay);
         bcm2835_gpio_write(STEP_M2, LOW);
         bcm2835_delayMicroseconds(delay);
+        steps++;
     }
+    #ifdef DEBUG
+        //print the steps
+        std::cout << "steps: " << steps << std::endl;
+    #endif
 }
 
 Motor::Motor():valid(true)

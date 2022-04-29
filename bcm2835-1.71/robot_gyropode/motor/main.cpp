@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define DEBUG TRUE
+
 
 bool isvalid=true;
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
     if (!bcm2835_init())
       return (1);
-    unsigned int delay=0;
+    unsigned int delay=1;
     int steps=-1;
     //motor is a pointer to be deletable
     Motor1 *motor1 = new Motor1();

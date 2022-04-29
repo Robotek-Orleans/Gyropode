@@ -7,6 +7,8 @@
 #define DIR_M2 13
 #define ENABLE 26
 
+#define DEBUG TRUE
+
 // créer une classe abstraite
 class Motor
 {
@@ -27,6 +29,8 @@ class Motor
             //bcm2835_gpio_fsel(DirPin(), BCM2835_GPIO_FSEL_OUTP);
             bcm2835_gpio_fsel(STEP_M1, BCM2835_GPIO_FSEL_OUTP);
             bcm2835_gpio_fsel(DIR_M1, BCM2835_GPIO_FSEL_OUTP);
+            bcm2835_gpio_fsel(STEP_M2, BCM2835_GPIO_FSEL_OUTP);
+            bcm2835_gpio_fsel(DIR_M2, BCM2835_GPIO_FSEL_OUTP);
             
             bcm2835_gpio_fsel(ENABLE, BCM2835_GPIO_FSEL_OUTP);
             //enable motor
