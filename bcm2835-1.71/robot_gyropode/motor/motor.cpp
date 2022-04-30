@@ -20,8 +20,7 @@ void Motor1::run()       //steps is only return variable for the main loop
         // clear the step pin to LOW
         bcm2835_gpio_clr_multi(STEP_PIN_M1); 
         bcm2835_delayMicroseconds(delay);
-        steps++;
-    }
+        dir ? steps++ : steps--; // if dir is true, steps++, else steps--
     #ifdef DEBUG
         //print the steps
         std::cout << "steps: " << steps << std::endl;
@@ -42,7 +41,7 @@ void Motor2::run()       //steps is only return variable for the main loop
         // clear the step pin to LOW
         bcm2835_gpio_clr_multi(STEP_PIN_M2);
         bcm2835_delayMicroseconds(delay);
-        steps++;
+        dir ? steps++ : steps--; // if dir is true, steps++, else steps--
     }
     #ifdef DEBUG
         //print the steps
