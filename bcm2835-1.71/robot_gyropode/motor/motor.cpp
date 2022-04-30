@@ -13,7 +13,7 @@ void Motor1::run()       //steps is only return variable for the main loop
     while (valid) 
     {
         // set the dir pin to the right value
-        bcm2835_gpio_write(DIR_M1, dir);
+        bcm2835_gpio_write_multi(DIR_PIN_M1, dir);
         // set the step pin to high
         bcm2835_gpio_set_multi(STEP_PIN_M1);
         bcm2835_delayMicroseconds(delay);
@@ -34,7 +34,7 @@ void Motor2::run()       //steps is only return variable for the main loop
     while (valid) 
     {   
         // set the dir pin to the right value
-        bcm2835_gpio_write(DIR_M2, dir);
+        bcm2835_gpio_write_multi(DIR_PIN_M2, dir);
         // set the step pin to high
         bcm2835_gpio_set_multi(STEP_PIN_M2);
         bcm2835_delayMicroseconds(delay);

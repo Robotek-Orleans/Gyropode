@@ -1,13 +1,14 @@
 #include <bcm2835.h>
 #include <limits.h>
 
-
+// motor pins definitions
 #define ENABLE 26 // ENABLE HIGH <=> motor disabled 
 #define STEP_M1 6
 #define DIR_M1 5
 #define STEP_M2 19
 #define DIR_M2 13
 
+//definitions to speed up the code
 #define STEP_PIN_M1 (1 << STEP_M1)
 #define DIR_PIN_M1 (1 << DIR_M1)
 #define PINS_M1 (1 << STEP_M1) | (1 << DIR_M1)
@@ -15,6 +16,8 @@
 #define DIR_PIN_M2 (1 << DIR_M2)
 #define PINS_M2 (1 << STEP_M2) | (1 << DIR_M2)
 
+
+//debugging
 #define DEBUG TRUE
 
 // créer une classe abstraite
