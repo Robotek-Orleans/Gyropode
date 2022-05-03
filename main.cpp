@@ -1,14 +1,12 @@
 #include <bcm2835.h>
-#include "motor.cpp"
 #include <csignal>
 #include <sys/types.h>
 #include <unistd.h>
 // include threading library
 #include <thread>
 
-// include the gyro class
-//#include "../../../i2cdevlib/RaspberryPi/MPU6050/examples/gyro.cpp"
-
+#include "motor.cpp"
+#include "gyro.cpp"
 
 bool isvalid=true;
 //motor is a pointer to be deletable
@@ -58,7 +56,7 @@ int main(int argc, char **argv)
     //motor is a pointer to be deletable
     motor1 = new Motor1();
     motor2 = new Motor2();
-
+    Gyro gyro;
     
 
     motor1->dir=dir;

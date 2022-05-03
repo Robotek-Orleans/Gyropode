@@ -9,8 +9,8 @@ void Gyro::value()
   I2Cdev::initialize();
   MPU6050 accelgyro ;
   accelgyro.initialize();
-  accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-  printf("  %d \t %d \t %d \r", ax, ay, az);
+  accelgyro.getAccelerationXZ(&ax,&az);
+  printf("  %d \t %d \r", ax, az);
   fflush(stdout);
   bcm2835_delay(1000);
 }
@@ -24,7 +24,7 @@ Gyro::~Gyro()
 
 /*
 int main(int argc, char **argv) {
-  Gyro gyro;
+  Gyro gyro;S
   gyro.value();
   }
 */
