@@ -5,6 +5,17 @@
 #include <iomanip>
 #include <chrono>
 
+#define DEBUG TRUE
+void Motor::init()
+{
+    // Set the pin to be an output
+    bcm2835_gpio_fsel(STEP_M1, BCM2835_GPIO_FSEL_OUTP);
+    bcm2835_gpio_fsel(DIR_M1, BCM2835_GPIO_FSEL_OUTP);
+    bcm2835_gpio_fsel(ENABLE, BCM2835_GPIO_FSEL_OUTP);
+    //enable motor
+    bcm2835_gpio_write(ENABLE, LOW);
+}
+
 
 void Motor1::run()       //steps is only return variable for the main loop
 {
@@ -21,10 +32,7 @@ void Motor1::run()       //steps is only return variable for the main loop
         bcm2835_gpio_clr_multi(STEP_PIN_M1); 
         bcm2835_delayMicroseconds(delay);
         dir ? steps++ : steps--; // if dir is true, steps++, else steps--
-    #ifdef DEBUG
-        //print the steps
-        std::cout << "steps: " << steps << std::endl;
-    #endif
+    }
 }
 
 void Motor2::run()       //steps is only return variable for the main loop
@@ -41,12 +49,8 @@ void Motor2::run()       //steps is only return variable for the main loop
         // clear the step pin to LOW
         bcm2835_gpio_clr_multi(STEP_PIN_M2);
         bcm2835_delayMicroseconds(delay);
-        dir ? steps++ : steps--; // if dir is true, steps++, else steps--
+        dir ? steps++ : steps--; // if dir is true, steps++, else steps-- 
     }
-    #ifdef DEBUG
-        //print the steps
-        std::cout << "steps: " << steps << std::endl;
-    #endif
 }
 
 Motor::Motor():valid(true)

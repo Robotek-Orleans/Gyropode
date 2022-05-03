@@ -16,6 +16,8 @@
 #define DIR_PIN_M2 (1 << DIR_M2)
 #define PINS_M2 (1 << STEP_M2) | (1 << DIR_M2)
 
+// number of steps for one revolution
+#define REVOLUTION 3200 // number of steps for one revolution
 
 //debugging
 #define DEBUG TRUE
@@ -39,19 +41,7 @@ class Motor
         //virtual const int &StepPin() const = 0;
         //virtual const int &DirPin() const = 0;
     protected:
-        inline void init(){
-            // Set the pin to be an output
-            //bcm2835_gpio_fsel(StepPin(), BCM2835_GPIO_FSEL_OUTP);
-            //bcm2835_gpio_fsel(DirPin(), BCM2835_GPIO_FSEL_OUTP);
-            bcm2835_gpio_fsel(STEP_M1, BCM2835_GPIO_FSEL_OUTP);
-            bcm2835_gpio_fsel(DIR_M1, BCM2835_GPIO_FSEL_OUTP);
-            bcm2835_gpio_fsel(STEP_M2, BCM2835_GPIO_FSEL_OUTP);
-            bcm2835_gpio_fsel(DIR_M2, BCM2835_GPIO_FSEL_OUTP);
-            
-            bcm2835_gpio_fsel(ENABLE, BCM2835_GPIO_FSEL_OUTP);
-            //enable motor
-            bcm2835_gpio_write(ENABLE, LOW);
-        }
+        void init();
 };
 
 class Motor1 : public Motor
