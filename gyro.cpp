@@ -4,7 +4,7 @@
 #include "MPU6050.h"
 #include <math.h>
 #include "gyro.h"
-void Gyro::value()
+void Gyro::runAcquisition()
 {
   I2Cdev::initialize();
   MPU6050 accelgyro ;
@@ -20,12 +20,14 @@ Gyro::Gyro()
 }
 Gyro::~Gyro()
 {
+
 }
 
-/*
 int main(int argc, char **argv) {
-  Gyro gyro;S
-  gyro.value();
+  Gyro gyro;
+  gyro.runAcquisition();
   }
-*/
+
+
+
 

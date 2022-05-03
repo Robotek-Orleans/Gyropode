@@ -4,7 +4,7 @@ class Gyro
     public:
         Gyro();
         ~Gyro();
-        void value();
+        void runAcquisition();
         int16_t ax,ay,az;
         int16_t gx, gy, gz;
 
