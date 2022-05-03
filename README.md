@@ -2,7 +2,7 @@
 
 compile and run the main code 
 ```sh
-g++ ~/Gyropode/bcm2835-1.71/robot_gyropode/motor/main.cpp -O3 -o main.out -l bcm2835 -pthread && sudo ./main.out
+g++ ~/Gyropode/main.cpp -O3 -o main.out -l bcm2835 -pthread && sudo ./main.out
 ```
 
 
