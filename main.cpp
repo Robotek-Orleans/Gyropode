@@ -6,6 +6,9 @@
 // include threading library
 #include <thread>
 
+// include the gyro class
+//#include "../../../i2cdevlib/RaspberryPi/MPU6050/examples/gyro.cpp"
+
 
 bool isvalid=true;
 //motor is a pointer to be deletable
@@ -56,6 +59,8 @@ int main(int argc, char **argv)
     motor1 = new Motor1();
     motor2 = new Motor2();
 
+    
+
     motor1->dir=dir;
     motor2->dir=dir;
     //motor1->delay=delay;
@@ -71,18 +76,19 @@ int main(int argc, char **argv)
     std::thread tm1(runmotor,motor1);
     std::thread tm2(runmotor,motor2);
     
-    for (int i=1000;i>12;i*=0.99)
+    for (int i=10000;i>12;i*=0.99)
     {
         motor1->delay=i;
         motor2->delay=i;
-        //print the delay
-        std::cout << "delay: " << motor1->delay << std::endl;
+        // print the delay
+        printf("delay: %d \r", motor1->delay);
+        fflush(stdout);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
         // if i is lower than 100, wait more
-        if (i<100)
+        if (i<80)
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(40));
         }
 
         if (!isvalid)

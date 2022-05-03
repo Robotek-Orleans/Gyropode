@@ -11,6 +11,9 @@ void Motor::init()
     // Set the pin to be an output
     bcm2835_gpio_fsel(STEP_M1, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(DIR_M1, BCM2835_GPIO_FSEL_OUTP);
+    bcm2835_gpio_fsel(STEP_M2, BCM2835_GPIO_FSEL_OUTP);
+    bcm2835_gpio_fsel(DIR_M2, BCM2835_GPIO_FSEL_OUTP);
+
     bcm2835_gpio_fsel(ENABLE, BCM2835_GPIO_FSEL_OUTP);
     //enable motor
     bcm2835_gpio_write(ENABLE, LOW);
@@ -33,6 +36,7 @@ void Motor1::run()       //steps is only return variable for the main loop
         bcm2835_delayMicroseconds(delay);
         dir ? steps++ : steps--; // if dir is true, steps++, else steps--
     }
+    printf("motor 1 stopped\n");
 }
 
 void Motor2::run()       //steps is only return variable for the main loop
@@ -51,6 +55,7 @@ void Motor2::run()       //steps is only return variable for the main loop
         bcm2835_delayMicroseconds(delay);
         dir ? steps++ : steps--; // if dir is true, steps++, else steps-- 
     }
+    printf("motor 2 stopped\n");
 }
 
 Motor::Motor():valid(true)

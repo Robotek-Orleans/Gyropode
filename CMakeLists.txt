@@ -14,9 +14,13 @@ else()
   message(STATUS "bcm2835_lib library found")
 endif()
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 # Add the directory to search for header files
 include_directories(include)
 
 # Add executable target with source files listed in SOURCE_FILES variable
 add_executable(motorworking ${SOURCE_FILES})
 target_link_libraries(motorworking ${BCM2835_LIB})
+target_link_libraries(motorworking PRIVATE Threads::Threads)
